@@ -1,18 +1,22 @@
 import requests
+import shutil
 
-def downloadLogo(WebUrl,logoPath,save_as="logo.png"):
-
-    logoUrl = WebUrl.rstrip("/")+"/"+logoPath.lstrip("/")
+def downloadLogo(logoPath):
+    save=logoPath.split("/")[-1]
+    save_as=save.split(".")[0]+".png"
 
     try:
-        response = requests.get(logoUrl,stream=True,timeout=30)
+        response = requests.get(logoPath,stream=True,timeout=30)
 
         response.raise_for_status()
 
+        response.raw.decode_content = True
+
         with open(save_as,"wb") as f:
-            for chunk in response.iter_content(1024):
-                f.write(chunk)
+            shutil.copyfileobj(response.raw,f)
 
         
     except Exception as e:
         print("Couldn't download the logo:",e)
+
+downloadLogo("https://cbintl.com.np/wp-content/uploads/2021/02/home-page-2-01-1-768x240.png")
