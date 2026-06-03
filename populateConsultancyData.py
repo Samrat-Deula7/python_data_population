@@ -4,8 +4,8 @@ import requests
 # downloadConsultancyLogo.save_as
 
 try:
-    def populateData(cookies,data):
-        url=""
+    def populateData(cookies,data,dataLength):
+        url="http://localhost:5000/api/consultancies"
         payload=""
         headers = {
             "User-Agent": (
@@ -15,9 +15,38 @@ try:
             )
         }
 
-        response = requests.post(url,json=payload,headers=headers,cookies=cookies,timeout=30)
+        for i in range(dataLength):
+            payload = {
+                "name": data[0][i],
+                "short_bio": data[1][i],
+                "long_bio": data[1][i],
+                "website": data[2][i],
+                "established_year":0,
+                "students_served":0,
+                "address":"",
+                "city":"",
+                "country_ids":'',
+                "university_ids":'',
+                "services":'',
+                "service_ids":'',
+            }
+            print(payload)
+            if(open(data[3][i], 'rb') != ""):
 
-        response.raise_for_status()
+                files = {
+                    "consultancy_logo": (data[3][i],open(data[3][i], "rb"),"image/png")
+                }
+                print(files)
+                response = requests.post(url,files=files,data=payload,headers=headers,cookies=cookies,timeout=30)
+
+                response.raise_for_status()
+            
+            else:
+                response = requests.post(url,json=payload,headers=headers,cookies=cookies,timeout=30)
+
+                response.raise_for_status()
+
+
     
 except Exception as e:
     print("Couldn't populate consultancy data",e)
