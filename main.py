@@ -18,13 +18,13 @@ for i, eachData in enumerate(data):
     consultancyUrl.insert(i,eachData["Url"])
     consultancyDesc.insert(i,eachData["Desc"])
 
-data = {
+dataToPopulate = {
         "Name": consultancyName,
         "Url": consultancyUrl,
         "Logo": LogodownloadName,
         "Desc": consultancyDesc
     }
-
+print(dataToPopulate)
 # l.cookies
 # Dl.downloadedName
 
