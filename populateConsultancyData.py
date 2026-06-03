@@ -1,7 +1,10 @@
 import requests
+# import downloadConsultancyLogo 
+
+# downloadConsultancyLogo.save_as
 
 try:
-    def populateData(cookies):
+    def populateData(cookies,data):
         url=""
         payload=""
         headers = {

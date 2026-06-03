@@ -4,19 +4,26 @@ import shutil
 def downloadLogo(logoPath):
     save=logoPath.split("/")[-1]
     save_as=save.split(".")[0]+".png"
+    downloadedName = ""
 
 
     try:
-        response = requests.get(logoPath,stream=True,timeout=30)
+        if "https://" in logoPath:
+            response = requests.get(logoPath,stream=True,timeout=60)
 
-        response.raise_for_status()
+            response.raise_for_status()
 
-        response.raw.decode_content = True
+            response.raw.decode_content = True
 
-        with open(save_as,"wb") as f:
-            shutil.copyfileobj(response.raw,f)
+            with open(save_as,"wb") as f:
+                shutil.copyfileobj(response.raw,f)
+            downloadedName = save_as
+            return downloadedName
+        else:
+            print("Logo not found")
+            downloadedName = ""
+            return downloadedName
 
     except Exception as e:
         print("Couldn't download the logo:",e)
 
-downloadLogo("https://meyvn.edu.np/default/favicon.png")
