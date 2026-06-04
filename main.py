@@ -33,8 +33,16 @@ for i, eachData in enumerate(data[16:17]):
     consultancyDesc.insert(i,eachData["Desc"])
 
     filteredServices = Services[i].split("|")
-    service1 = filteredServices[0].split(",")
-    service2 = filteredServices[1].split(",")
+
+    if len(filteredServices) < 2:
+        service1 = filteredServices[0].split(",")
+    elif len(filteredServices) == 2:
+        service1 = filteredServices[0].split(",")
+        service2 = filteredServices[1].split(",")
+    else:
+        service1 = filteredServices[0].split(",")
+        service2 = filteredServices[1].split(",")
+        service3 = filteredServices[2].split(",")
 
     objService1 = {
         "title":service1[0],
@@ -49,9 +57,7 @@ for i, eachData in enumerate(data[16:17]):
 
     servicesObjArr = json.dumps([objService1,objService2])
     consultancyServices.insert(i,servicesObjArr)
-# print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@222")
-# print(consultancyServices)
-# print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
 
 dataToPopulate = [
         consultancyName,
