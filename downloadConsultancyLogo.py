@@ -1,9 +1,11 @@
 import requests
 import shutil
+import os
 
 def downloadLogo(logoPath):
+    folder = "logos"
     save=logoPath.split("/")[-1]
-    save_as=save.split(".")[0]+".png"
+    save_as=os.path.join(folder,save.split(".")[0]+".png")
     downloadedName = ""
 
 
