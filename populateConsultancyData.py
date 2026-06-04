@@ -15,6 +15,10 @@ try:
             )
         }
 
+        print("############################3")
+        print(data[5])
+        print("#############################3")
+
         for i in range(dataLength):
             payload = {
                 "name": data[0][i],
@@ -23,20 +27,20 @@ try:
                 "website": data[2][i],
                 "established_year":0,
                 "students_served":0,
-                "address":"",
+                "address":data[4][i],
                 "city":"",
                 "country_ids":'',
                 "university_ids":'',
-                "services":'',
+                "services":data[5][i],
                 "service_ids":'',
             }
-            print(payload)
+            # print(payload)
             if(open(data[3][i], 'rb') != ""):
 
                 files = {
                     "consultancy_logo": (data[3][i],open(data[3][i], "rb"),"image/png")
                 }
-                print(files)
+                # print(files)
                 response = requests.post(url,files=files,data=payload,headers=headers,cookies=cookies,timeout=30)
 
                 response.raise_for_status()
