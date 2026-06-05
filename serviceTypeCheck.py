@@ -19,9 +19,9 @@ def check(service_short_text):
         )
         cur = conn.cursor()
 
-        value = (service_short_text,)
+        value = (service_short_text.strip(),)
 
-        cur.execute("SELECT id FROM Services WHERE short_text = %s;",value)
+        cur.execute("SELECT id FROM services WHERE short_text = %s;",value)
         idRow = cur.fetchone()[0]
 
 
@@ -29,9 +29,11 @@ def check(service_short_text):
         print(idRow)
         return idRow
 
+    
     except Exception as e:
         print("Error occurred while connecting to the database:", e)
     finally:
         if conn:
             cur.close()
             conn.close()
+# check("Preparation for GMAT business school entry")

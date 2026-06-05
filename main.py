@@ -3,7 +3,7 @@ import downloadConsultancyLogo as Dl
 import json
 import populateConsultancyData as IncreasePopulation
 import readExcel as re
-import serviceTypeCheck 
+from serviceTypeCheck import check
 
 consultancyName = []
 consultancyUrl = []
@@ -69,17 +69,18 @@ for i, eachData in enumerate(data[16:17]):
     if len(filteredServices) < 2:
         service1 = filteredServices[0].split(",")
         # servicesId.insert(i,serviceTypeCheck.check(service1[1]))
-        serId1 = serviceTypeCheck.check(service1[1])
+        serId1 = check(service1[1])
         print(service1[1])
     elif len(filteredServices) == 2:
         service1 = filteredServices[0].split(",")
         service2 = filteredServices[1].split(",")
         # servicesId.insert(i,serviceTypeCheck.check(service1[1])+","+serviceTypeCheck.check(service2[1]))
-        serId1 = serviceTypeCheck.check(str(service1[1]))
-        serId2 = serviceTypeCheck.check(str(service2[1]))
+        serId1 = check(str(service1[1]))
+        serId2 = check(str(service2[1]))
         print(serId1)
         print(serId2)
-        print(service1[1],service2[1])
+        print(service1[1])
+        print(service2[1])
     else:
         service1 = filteredServices[0].split(",")
         service2 = filteredServices[1].split(",")

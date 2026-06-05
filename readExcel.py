@@ -2,7 +2,7 @@ import pandas as pd
 
 def getAddressAndServices():
 
-    df = pd.read_excel("C:\\Users\\hp\\Downloads\\consultancy data.xlsx")
+    df = pd.read_excel("C:\\Users\\hp\\Downloads\\consultancy_data_updated.xlsx")
 
 
     Address = df["Address"].tolist()
