@@ -30,7 +30,7 @@ try:
                 "city":"",
                 "country_ids":'',
                 "university_ids":'',
-                "services":[],
+                "services":'',
                 "service_ids":data[5][i],
             }
             # print(payload)

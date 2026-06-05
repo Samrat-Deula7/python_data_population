@@ -18,10 +18,10 @@ consultancyServiceIds = ServiceId.getIds()
 
 with open("BackUpWithoutAi.json","r") as f:
     data = json.load(f)
-    dataLength = len(data)
+    dataLength = len(data[0:1])
 
 
-for i, eachData in enumerate(data):
+for i, eachData in enumerate(data[0:1]):
     logoData = Dl.downloadLogo(eachData["Logo"])
     LogodownloadName.insert(i,logoData)
     consultancyName.insert(i,eachData["Name"])
