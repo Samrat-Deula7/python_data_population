@@ -25,8 +25,6 @@ def check(service_short_text):
         idRow = cur.fetchone()[0]
 
 
-        print("9999999999999999999999999999")
-        print(idRow)
         return idRow
 
     

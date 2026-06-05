@@ -14,38 +14,6 @@ servicesId = []
 consultancyAddress, Services = re.getAddressAndServices()
 
 
-# Services_Data_Ids = {
-#     "Guidance for study destinations abroad": 272,
-#     "Intensive training for IELTS exam success": 273,
-#     "Focused preparation for TOEFL test takers": 274,
-#     "Coaching for GRE analytical and verbal skills": 275,
-#     "Preparation for GMAT business school entry": 276,
-#     "Exam readiness for SAT college admissions": 277,
-#     "Practice sessions for PTE language test": 278,
-#     "Coaching for medical entrance examinations": 279,
-#     "Preparation for public service commission exams": 280,
-#     "Exam prep for nursing entrance tests": 281,
-#     "Preparation for MBA entrance examinations": 282,
-#     "Bridge course for academic transition support": 283,
-#     "Focused training for CMAT management test": 284,
-#     "Preparation for KUMAT university entrance exam": 285,
-#     "Coaching for ACCA professional qualification": 286,
-#     "Exam prep for GNK specialized tests": 287,
-#     "Subject-specific coaching in Botany": 288,
-#     "Subject-specific coaching in Physics": 289,
-#     "Subject-specific coaching in Mathematics": 290,
-#     "Training for general standardized exams": 291,
-#     "Learn Japanese for study and work": 292,
-#     "Master English for global communication": 293,
-#     "Learn German for academic and career growth": 294,
-#     "Learn Korean for cultural and professional use": 295,
-#     "Learn French for international opportunities": 296,
-#     "Learn Chinese for business and education": 297,
-#     "Learn Spanish for global communication": 298,
-#     "Learn Hebrew for cultural and academic purposes": 299
-# }
-
-
 
 with open("BackUpWithoutAi.json","r") as f:
     data = json.load(f)
