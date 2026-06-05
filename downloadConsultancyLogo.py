@@ -2,7 +2,7 @@ import requests
 import shutil
 import os
 
-def downloadLogo(logoPath):
+def downloadLogo(logoPath,url):
     folder = "logos"
     save=logoPath.split("/")[-1]
     save_as=os.path.join(folder,save.split(".")[0]+".png")
@@ -21,8 +21,20 @@ def downloadLogo(logoPath):
                 shutil.copyfileobj(response.raw,f)
             downloadedName = save_as
             return downloadedName
+        elif logoPath != "":
+            logoPath = url + logoPath
+            response = requests.get(logoPath,stream=True,timeout=60)
+
+            response.raise_for_status()
+
+            response.raw.decode_content = True
+
+            with open(save_as,"wb") as f:
+                shutil.copyfileobj(response.raw,f)
+            downloadedName = save_as
+            return downloadedName
         else:
-            print("Logo not found")
+            print("Unable to print logo")
             downloadedName = ""
             return downloadedName
 

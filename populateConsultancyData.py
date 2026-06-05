@@ -1,4 +1,6 @@
 import requests
+import pandas as pd
+
 # import downloadConsultancyLogo 
 
 # downloadConsultancyLogo.save_as
@@ -32,22 +34,29 @@ try:
                 "university_ids":'',
                 "services":'',
                 "service_ids":data[5][i],
+                "logoName":data[3][i]
             }
             # print(payload)
-            if(open(data[3][i], 'rb') != ""):
+            # if(open(data[3][i], 'rb') != ""):
 
-                files = {
-                    "consultancy_logo": (data[3][i],open(data[3][i], "rb"),"image/png")
-                }
-                # print(files)
-                response = requests.post(url,files=files,data=payload,headers=headers,cookies=cookies,timeout=30)
+            #     files = {
+            #         "consultancy_logo": (data[3][i],open(data[3][i], "rb"),"image/png")
+            #     }
+            #     # print(files)
+            #     response = requests.post(url,files=files,data=payload,headers=headers,cookies=cookies,timeout=30)
 
-                response.raise_for_status()
+            #     response.raise_for_status()
             
-            else:
-                response = requests.post(url,json=payload,headers=headers,cookies=cookies,timeout=30)
+            # else:
+            #     response = requests.post(url,json=payload,headers=headers,cookies=cookies,timeout=30)
 
-                response.raise_for_status()
+            #     response.raise_for_status()
+
+            df = pd.DataFrame(payload)
+
+            df.to_json("DataToPopulate.json",orient="records",indent=4)
+
+
 
 
     

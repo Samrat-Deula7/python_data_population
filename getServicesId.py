@@ -9,7 +9,7 @@ def getIds():
     consultancyServiceIds = []
     servicesId = []
 
-    for i , service in enumerate(Services[0:1]):
+    for i , service in enumerate(Services):
 
         if "|" in service:
 
