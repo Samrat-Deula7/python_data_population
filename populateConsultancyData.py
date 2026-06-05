@@ -31,8 +31,8 @@ try:
                 "city":"",
                 "country_ids":'',
                 "university_ids":'',
-                "services":data[5][i],
-                "service_ids":'',
+                "services":'',
+                "service_ids":data[5],
             }
             # print(payload)
             if(open(data[3][i], 'rb') != ""):

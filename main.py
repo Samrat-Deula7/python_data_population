@@ -21,8 +21,8 @@ with open("BackUpWithoutAi.json","r") as f:
 
 
 for i, eachData in enumerate(data[16:17]):
-    # logoData = Dl.downloadLogo(eachData["Logo"])
-    # LogodownloadName.insert(i,logoData)
+    logoData = Dl.downloadLogo(eachData["Logo"])
+    LogodownloadName.insert(i,logoData)
     consultancyName.insert(i,eachData["Name"])
     consultancyUrl.insert(i,eachData["Url"])
     consultancyDesc.insert(i,eachData["Desc"])
@@ -36,39 +36,40 @@ for i, eachData in enumerate(data[16:17]):
 
     if len(filteredServices) < 2:
         service1 = filteredServices[0].split(",")
-        # servicesId.insert(i,serviceTypeCheck.check(service1[1]))
         serId1 = check(service1[1])
+        servicesId.insert(i,serId1)
         print(service1[1])
     elif len(filteredServices) == 2:
         service1 = filteredServices[0].split(",")
         service2 = filteredServices[1].split(",")
-        # servicesId.insert(i,serviceTypeCheck.check(service1[1])+","+serviceTypeCheck.check(service2[1]))
         serId1 = check(str(service1[1]))
         serId2 = check(str(service2[1]))
-        print(serId1)
-        print(serId2)
-        print(service1[1])
-        print(service2[1])
+        servicesId.append(serId1)
+        servicesId.append(serId2)
     else:
         service1 = filteredServices[0].split(",")
         service2 = filteredServices[1].split(",")
         service3 = filteredServices[2].split(",")
-        # servicesId.insert(i,serviceTypeCheck.check(service1[1])+","+serviceTypeCheck.check(service2[1])+","+serviceTypeCheck.check(service3[1]))
+        serId1 = check(str(service1[1]))
+        serId2 = check(str(service2[1]))
+        serId3 = check(str(service3[1]))
+        servicesId.append(serId1)
+        servicesId.append(serId2)
+        servicesId.append(serId3)
         print(service1[1],service2[1],service3[1])
 
     print(servicesId)
-    # consultancyServices.insert(i,servicesObjArr)
 
 
-# dataToPopulate = [
-#         consultancyName,
-#         consultancyDesc,
-#         consultancyUrl,
-#         LogodownloadName,
-#         consultancyAddress,
-#         consultancyServices
-# ]
-# IncreasePopulation.populateData(l.cookies,dataToPopulate,dataLength)
+dataToPopulate = [
+        consultancyName,
+        consultancyDesc,
+        consultancyUrl,
+        LogodownloadName,
+        consultancyAddress,
+        servicesId
+]
+IncreasePopulation.populateData(l.cookies,dataToPopulate,dataLength)
 
 
 
