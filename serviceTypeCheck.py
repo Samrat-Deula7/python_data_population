@@ -1,14 +1,15 @@
 import psycopg2
 
-DB_HOST = "localhost"
-DB_PORT = "5432"
-DB_NAME = "databasename"
-DB_USER = "postgres"
-DB_PASS = "abcddddd"
 
-try:
-
-    def check(service_short_text):
+def check(service_short_text):
+    try:
+        DB_HOST = "localhost"
+        DB_PORT = "5432"
+        DB_NAME = "databasename"
+        DB_USER = "postgres"
+        DB_PASS = "abcddddd"
+        print("service_type check is called")
+        print(service_short_text)
         conn = psycopg2.connect(
             host=DB_HOST,
             port=DB_PORT,
@@ -18,13 +19,19 @@ try:
         )
         cur = conn.cursor()
 
-        value = service_short_text
+        value = (service_short_text,)
 
-        cur.execute("SELECT id FROM services WHERE short_text = %s;",(value,))
+        cur.execute("SELECT id FROM Services WHERE short_text = %s;",value)
         idRow = cur.fetchone()[0]
+
+
+        print("9999999999999999999999999999")
         print(idRow)
         return idRow
 
-    check("Exam prep for GRE")
-except Exception as e:
-    print("Error occurred while connecting to the database:", e)
+    except Exception as e:
+        print("Error occurred while connecting to the database:", e)
+    finally:
+        if conn:
+            cur.close()
+            conn.close()
