@@ -3,12 +3,13 @@ import downloadConsultancyLogo as Dl
 import json
 import populateConsultancyData as IncreasePopulation
 import readExcel as re
+import serviceTypeCheck 
 
 consultancyName = []
 consultancyUrl = []
 LogodownloadName = []
 consultancyDesc = []
-consultancyServices = []
+servicesId = []
 
 consultancyAddress, Services = re.getAddressAndServices()
 
@@ -19,6 +20,7 @@ consultancyAddress, Services = re.getAddressAndServices()
 
 
 
+
 with open("BackUpWithoutAi.json","r") as f:
     data = json.load(f)
     dataLength = len(data[16:17])
@@ -26,48 +28,48 @@ with open("BackUpWithoutAi.json","r") as f:
 # print(consultancyServices)
 
 for i, eachData in enumerate(data[16:17]):
-    logoData = Dl.downloadLogo(eachData["Logo"])
-    LogodownloadName.insert(i,logoData)
+    # logoData = Dl.downloadLogo(eachData["Logo"])
+    # LogodownloadName.insert(i,logoData)
     consultancyName.insert(i,eachData["Name"])
     consultancyUrl.insert(i,eachData["Url"])
     consultancyDesc.insert(i,eachData["Desc"])
 
     filteredServices = Services[i].split("|")
+    
+   
+
+  
+    
 
     if len(filteredServices) < 2:
         service1 = filteredServices[0].split(",")
+        servicesId.insert(i,serviceTypeCheck.check(service1[1]))
+        print(service1[1])
     elif len(filteredServices) == 2:
         service1 = filteredServices[0].split(",")
         service2 = filteredServices[1].split(",")
+        servicesId.insert(i,serviceTypeCheck.check(service1[1])+","+serviceTypeCheck.check(service2[1]))
+        print(service1[1],service2[1])
     else:
         service1 = filteredServices[0].split(",")
         service2 = filteredServices[1].split(",")
         service3 = filteredServices[2].split(",")
+        servicesId.insert(i,serviceTypeCheck.check(service1[1])+","+serviceTypeCheck.check(service2[1])+","+serviceTypeCheck.check(service3[1]))
+        print(service1[1],service2[1],service3[1])
 
-    objService1 = {
-        "title":service1[0],
-        "short_text":service1[1],
-        "icon":service1[2]
-    }
-    objService2 = {
-        "title":service2[0],
-        "short_text":service2[1],
-        "icon":service2[2]
-    }
-
-    servicesObjArr = json.dumps([objService1,objService2])
-    consultancyServices.insert(i,servicesObjArr)
+    print(servicesId)
+    # consultancyServices.insert(i,servicesObjArr)
 
 
-dataToPopulate = [
-        consultancyName,
-        consultancyDesc,
-        consultancyUrl,
-        LogodownloadName,
-        consultancyAddress,
-        consultancyServices
-]
-IncreasePopulation.populateData(l.cookies,dataToPopulate,dataLength)
+# dataToPopulate = [
+#         consultancyName,
+#         consultancyDesc,
+#         consultancyUrl,
+#         LogodownloadName,
+#         consultancyAddress,
+#         consultancyServices
+# ]
+# IncreasePopulation.populateData(l.cookies,dataToPopulate,dataLength)
 
 
 
