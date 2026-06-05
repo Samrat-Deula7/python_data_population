@@ -14,10 +14,9 @@ try:
                 "Chrome/114.0 Safari/537.36"
             )
         }
-
-        print("############################3")
+        print("#####################333")
         print(data[5])
-        print("#############################3")
+      
 
         for i in range(dataLength):
             payload = {
@@ -31,8 +30,8 @@ try:
                 "city":"",
                 "country_ids":'',
                 "university_ids":'',
-                "services":'',
-                "service_ids":data[5],
+                "services":[],
+                "service_ids":data[5][i],
             }
             # print(payload)
             if(open(data[3][i], 'rb') != ""):
