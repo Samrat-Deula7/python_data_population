@@ -6,18 +6,7 @@ import readExcel as re
 from serviceTypeCheck import check
 import getServicesId as ServiceId
 
-consultancyName = []
-consultancyUrl = []
-LogodownloadName = []
-consultancyDesc = []
-data = []
-
-established_year = []
-students_served = []
-city = []
-country_ids = []
-university_ids = []
-services = []
+consultancies = []
 
 consultancyAddress, Services = re.getAddressAndServices()
 consultancyServiceIds = ServiceId.getIds()
@@ -30,58 +19,25 @@ with open("BackUpWithoutAi.json","r") as f:
 
 
 for i, eachData in enumerate(data):
-    logoData = Dl.downloadLogo(eachData["Logo"],eachData["Url"])
-    LogodownloadName.insert(i,logoData)
-    consultancyName.insert(i,eachData["Name"])
-    consultancyUrl.insert(i,eachData["Url"])
-    consultancyDesc.insert(i,eachData["Desc"])
+    logoData = Dl.downloadLogo(eachData["Logo"], eachData["Url"])
 
-    max_len = max(len(LogodownloadName),len(consultancyName),len(consultancyUrl),len(consultancyDesc))
+    consultancies.append({
+        "name": eachData["Name"],
+        "url": eachData["Url"],
+        "desc": eachData["Desc"],
+        "logo": logoData,
+        "address": consultancyAddress[i],
+        "serviceIds": consultancyServiceIds[i],
+        "established_year": 0,
+        "students_served": 0,
+        "city": "",
+        "country_id": "",
+        "university_id": "",
+        "services": ""
+    })
+    print(len(consultancies))
 
-    print(len(LogodownloadName),len(consultancyName),len(consultancyUrl),len(consultancyDesc))
-
-    if (max_len-len(LogodownloadName))>0:
-        name += [""]
-    if (max_len-len(consultancyName))>0:
-        logo += [""]
-    if (max_len-len(consultancyUrl))>0:
-        ConsultancyDesc += [""]
-    if (max_len-len(consultancyDesc))>0:
-        url += [""]
-    if (max_len-len(established_year))>0:
-        url += [0]
-    if (max_len-len(students_served))>0:
-        url += [0]
-    if (max_len-len(city))>0:
-        url += [""]
-    if (max_len-len(country_ids))>0:
-        url += [""]
-    if (max_len-len(university_ids))>0:
-        url += [""]
-    if (max_len-len(services))>0:
-        url += [""]
-    
-
-
-
-
-dataToPopulate = [
-        consultancyName,
-        consultancyDesc,
-        consultancyUrl,
-        LogodownloadName,
-        consultancyAddress,
-        consultancyServiceIds,
-        established_year,
-        students_served,
-        city,
-        country_ids,
-        university_ids,
-        services
-
-]
-
-IncreasePopulation.populateData(dataToPopulate,dataLength)
+    IncreasePopulation.populateData(consultancies, len(consultancies))
 
 
 

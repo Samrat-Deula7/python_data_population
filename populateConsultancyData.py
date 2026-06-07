@@ -5,31 +5,30 @@ import pandas as pd
 
 try:
     def populateData(data,dataLength):
-       
-        print("#####################333")
-        print(data[5])
-      
+        all_payloads = []
 
-        for i in range(dataLength):
+        for eachData in data:
+
             payload = {
-                "name": data[0],
-                "short_bio": data[1],
-                "long_bio": data[1],
-                "website": data[2],
-                "established_year":data[6],
-                "students_served":data[7],
-                "address":data[4],
-                "city":data[8],
-                "country_ids":data[9],
-                "university_ids":data[10],
-                "services":data[11],
-                "service_ids":data[5],
-                "logoName":data[3]
+                "name": eachData["name"],
+                "short_bio": eachData["desc"],
+                "long_bio": eachData["desc"],
+                "website": eachData["url"],
+                "established_year":eachData["established_year"],
+                "students_served":eachData["students_served"],
+                "address":eachData["address"],
+                "city":eachData["city"],
+                "country_ids":eachData["country_id"],
+                "university_ids":eachData["university_id"],
+                "services":eachData['services'],
+                "service_ids":eachData["serviceIds"],
+                "logoName":eachData["logo"]
             }
-          
-            df = pd.DataFrame(payload)
+            all_payloads.append(payload)
+            
+        df = pd.DataFrame(all_payloads)
 
-            df.to_json("DataToPopulate.json",orient="records",indent=4)
+        df.to_json("DataToPopulate.json",orient="records",indent=4)
 
 
 
