@@ -1,61 +1,35 @@
 import requests
 import pandas as pd
 
-# import downloadConsultancyLogo 
 
-# downloadConsultancyLogo.save_as
 
 try:
-    def populateData(cookies,data,dataLength):
-        url="http://localhost:5000/api/consultancies"
-        payload=""
-        headers = {
-            "User-Agent": (
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/114.0 Safari/537.36"
-            )
-        }
+    def populateData(data,dataLength):
+       
         print("#####################333")
         print(data[5])
       
 
         for i in range(dataLength):
             payload = {
-                "name": data[0][i],
-                "short_bio": data[1][i],
-                "long_bio": data[1][i],
-                "website": data[2][i],
-                "established_year":0,
-                "students_served":0,
-                "address":data[4][i],
-                "city":"",
-                "country_ids":'',
-                "university_ids":'',
-                "services":'',
-                "service_ids":data[5][i],
-                "logoName":data[3][i]
+                "name": data[0],
+                "short_bio": data[1],
+                "long_bio": data[1],
+                "website": data[2],
+                "established_year":data[6],
+                "students_served":data[7],
+                "address":data[4],
+                "city":data[8],
+                "country_ids":data[9],
+                "university_ids":data[10],
+                "services":data[11],
+                "service_ids":data[5],
+                "logoName":data[3]
             }
-            # print(payload)
-            # if(open(data[3][i], 'rb') != ""):
-
-            #     files = {
-            #         "consultancy_logo": (data[3][i],open(data[3][i], "rb"),"image/png")
-            #     }
-            #     # print(files)
-            #     response = requests.post(url,files=files,data=payload,headers=headers,cookies=cookies,timeout=30)
-
-            #     response.raise_for_status()
-            
-            # else:
-            #     response = requests.post(url,json=payload,headers=headers,cookies=cookies,timeout=30)
-
-            #     response.raise_for_status()
-
+          
             df = pd.DataFrame(payload)
 
             df.to_json("DataToPopulate.json",orient="records",indent=4)
-
 
 
 

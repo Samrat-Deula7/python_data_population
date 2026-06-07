@@ -11,7 +11,7 @@ def downloadLogo(logoPath,url):
 
     try:
         if "https://" in logoPath:
-            response = requests.get(logoPath,stream=True,timeout=60)
+            response = requests.get(logoPath,stream=True,timeout=120)
 
             response.raise_for_status()
 
@@ -23,7 +23,7 @@ def downloadLogo(logoPath,url):
             return downloadedName
         elif logoPath != "":
             logoPath = url + logoPath
-            response = requests.get(logoPath,stream=True,timeout=60)
+            response = requests.get(logoPath,stream=True,timeout=120)
 
             response.raise_for_status()
 

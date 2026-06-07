@@ -1,4 +1,4 @@
-import login as l
+# import login as l
 import downloadConsultancyLogo as Dl
 import json
 import populateConsultancyData as IncreasePopulation
@@ -10,6 +10,14 @@ consultancyName = []
 consultancyUrl = []
 LogodownloadName = []
 consultancyDesc = []
+data = []
+
+established_year = []
+students_served = []
+city = []
+country_ids = []
+university_ids = []
+services = []
 
 consultancyAddress, Services = re.getAddressAndServices()
 consultancyServiceIds = ServiceId.getIds()
@@ -28,6 +36,30 @@ for i, eachData in enumerate(data):
     consultancyUrl.insert(i,eachData["Url"])
     consultancyDesc.insert(i,eachData["Desc"])
 
+    max_len = max(len(LogodownloadName),len(consultancyName),len(consultancyUrl),len(consultancyDesc))
+
+    print(len(LogodownloadName),len(consultancyName),len(consultancyUrl),len(consultancyDesc))
+
+    if (max_len-len(LogodownloadName))>0:
+        name += [""]
+    if (max_len-len(consultancyName))>0:
+        logo += [""]
+    if (max_len-len(consultancyUrl))>0:
+        ConsultancyDesc += [""]
+    if (max_len-len(consultancyDesc))>0:
+        url += [""]
+    if (max_len-len(established_year))>0:
+        url += [0]
+    if (max_len-len(students_served))>0:
+        url += [0]
+    if (max_len-len(city))>0:
+        url += [""]
+    if (max_len-len(country_ids))>0:
+        url += [""]
+    if (max_len-len(university_ids))>0:
+        url += [""]
+    if (max_len-len(services))>0:
+        url += [""]
     
 
 
@@ -39,10 +71,17 @@ dataToPopulate = [
         consultancyUrl,
         LogodownloadName,
         consultancyAddress,
-        consultancyServiceIds
+        consultancyServiceIds,
+        established_year,
+        students_served,
+        city,
+        country_ids,
+        university_ids,
+        services
+
 ]
 
-IncreasePopulation.populateData(l.cookies,dataToPopulate,dataLength)
+IncreasePopulation.populateData(dataToPopulate,dataLength)
 
 
 
