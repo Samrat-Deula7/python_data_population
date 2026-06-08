@@ -3,6 +3,7 @@ from serviceTypeCheck import check
 
 consultancyAddress, Services = re.getAddressAndServices()
 
+print(Services)
 
 
 def getIds():
@@ -15,13 +16,13 @@ def getIds():
 
             filteredServices = service.split("|")
         else:
-            filteredServices = service
+            filteredServices = [service]
 
         if len(filteredServices) < 2:
             service1 = filteredServices[0].split(",")
             serId1 = check(str(service1[1]))
             servicesId.insert(i,serId1)
-            consultancyServiceIds.insert(i,servicesId)
+            consultancyServiceIds.append(servicesId)
             servicesId = []
         elif len(filteredServices) == 2:
             service1 = filteredServices[0].split(",")
@@ -30,7 +31,7 @@ def getIds():
             serId2 = check(str(service2[1]))
             servicesId.append(serId1)
             servicesId.append(serId2)
-            consultancyServiceIds.insert(i,servicesId)
+            consultancyServiceIds.append(servicesId)
             servicesId = []
         elif len(filteredServices) == 3:
             service1 = filteredServices[0].split(",")
@@ -42,7 +43,7 @@ def getIds():
             servicesId.append(serId1)
             servicesId.append(serId2)
             servicesId.append(serId3)
-            consultancyServiceIds.insert(i,servicesId)
+            consultancyServiceIds.append(servicesId)
             servicesId = []
         elif len(filteredServices) == 4:
             service1 = filteredServices[0].split(",")
@@ -57,7 +58,7 @@ def getIds():
             servicesId.append(serId2)
             servicesId.append(serId3)
             servicesId.append(serId4)
-            consultancyServiceIds.insert(i,servicesId)
+            consultancyServiceIds.append(servicesId)
             servicesId = []
         elif len(filteredServices) == 5:
             service1 = filteredServices[0].split(",")
@@ -75,7 +76,7 @@ def getIds():
             servicesId.append(serId3)
             servicesId.append(serId4)
             servicesId.append(serId5)
-            consultancyServiceIds.insert(i,servicesId)
+            consultancyServiceIds.append(servicesId)
             servicesId = []
         elif len(filteredServices) == 6:
             service1 = filteredServices[0].split(",")
@@ -96,8 +97,10 @@ def getIds():
             servicesId.append(serId4)
             servicesId.append(serId5)
             servicesId.append(serId6)
-            consultancyServiceIds.insert(i,servicesId)
+            consultancyServiceIds.append(servicesId)
             servicesId = []
         
 
     return consultancyServiceIds
+
+

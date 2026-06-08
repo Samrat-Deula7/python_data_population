@@ -8,4 +8,5 @@ def getAddressAndServices():
     Address = df["Address"].tolist()
     Services = df["Approved Services"].tolist()
 
+
     return Address, Services

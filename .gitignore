@@ -1,0 +1,5 @@
+# Ignore the logos folder
+logos/
+
+# Ignore the BackUpWithoutAi.json file
+BackUpWithoutAi.json
