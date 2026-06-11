@@ -35,7 +35,6 @@ for i, eachData in enumerate(data):
         "university_id": "",
         "services": ""
     })
-    print(len(consultancies))
 
     IncreasePopulation.populateData(consultancies, len(consultancies))
 

@@ -3,9 +3,6 @@ from serviceTypeCheck import check
 
 consultancyAddress, Services = re.getAddressAndServices()
 
-print(Services)
-
-
 def getIds():
     consultancyServiceIds = []
     servicesId = []
@@ -100,7 +97,7 @@ def getIds():
             consultancyServiceIds.append(servicesId)
             servicesId = []
         
-
+    print(consultancyServiceIds)    
     return consultancyServiceIds
 
 
